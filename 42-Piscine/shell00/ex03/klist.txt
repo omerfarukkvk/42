@@ -1,0 +1,6 @@
+Credentials cache: API:802B1439-8987-4243-844B-D7CC10AD7A59
+        Principal: okavak@42ISTANBUL.COM.TR
+
+  Issued                Expires               Principal
+Oct 18 09:55:25 2021  Oct 18 19:55:25 2021  krbtgt/42ISTANBUL.COM.TR@42ISTANBUL.COM.TR
+Oct 18 09:55:27 2021  Oct 18 19:55:25 2021  HTTP/student-storage.42istanbul.com.tr@42ISTANBUL.COM.TR
