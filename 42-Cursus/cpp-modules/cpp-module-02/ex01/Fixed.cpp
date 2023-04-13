@@ -16,3 +16,9 @@ Fixed::Fixed(const Fixed &copy)
 	std::cout << "Copy constructor called" << std::endl;
 	*this = copy;
 }
+
+Fixed::Fixed(const int num)
+{
+	std::cout << "Int constructor called" << std::endl;
+	value = num * pow(2, fractionsBits);
+}
