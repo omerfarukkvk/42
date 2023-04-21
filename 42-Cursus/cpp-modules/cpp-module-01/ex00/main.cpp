@@ -10,4 +10,4 @@ int main(void)
 	delete zombie2;
 	randomChump("Random");
 	return (0);
-}
+} 
