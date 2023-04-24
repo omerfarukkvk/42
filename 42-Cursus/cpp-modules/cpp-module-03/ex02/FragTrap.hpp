@@ -12,8 +12,6 @@ class FragTrap : public ClapTrap
 		FragTrap(const FragTrap &oth);
 		void highFivesGuys(void);
 		void attack(std::string const &target);
-
-
 };
 
 #endif

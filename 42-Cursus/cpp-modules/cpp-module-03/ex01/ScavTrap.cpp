@@ -2,7 +2,7 @@
 
 ScavTrap::ScavTrap()
 {
-	std::cout << "Unnamed ScavTrap created." << std::endl;
+	std::cout << "Default ScavTrap created." << std::endl;
 	this->name = "unnamed";
 	this->hitPoint = 100;
 	this->energyPoint = 50;

@@ -4,7 +4,11 @@ int main(void)
 {
 	FragTrap a("omer");
 
-	a.attack("omer");
+	a.attack("faruk");
+	a.takeDamage(50);
+	a.beRepaired(50);
+	a.takeDamage(100);
 	a.highFivesGuys();
-	a.takeDamage(10);
+
+	return 0;
 }

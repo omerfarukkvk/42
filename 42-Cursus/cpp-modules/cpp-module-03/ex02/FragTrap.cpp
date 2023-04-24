@@ -2,7 +2,7 @@
 
 FragTrap::FragTrap()
 {
-	std::cout << "Default FrapTrap created." << std::endl;
+	std::cout << "Default FragTrap created." << std::endl;
 	this->name = "unnamed";
 	this->hitPoint = 100;
 	this->energyPoint = 100;
@@ -11,7 +11,7 @@ FragTrap::FragTrap()
 
 FragTrap::FragTrap(std::string name)
 {
-	std::cout << name << " FrapTrap created." << std::endl;
+	std::cout << name << " FragTrap created." << std::endl;
 	this->name = name;
 	this->hitPoint = 100;
 	this->energyPoint = 100;
@@ -31,7 +31,7 @@ FragTrap::FragTrap(const FragTrap &oth)
 
 void	FragTrap::attack(std::string const &target)
 {
-	std::cout << "ScavTrap " << name << " attack " << target << ", causing " << attackDamage << " points of damage!" << std::endl;
+	std::cout << "FragTrap " << name << " attack " << target << ", causing " << attackDamage << " points of damage!" << std::endl;
 }
 
 void FragTrap::highFivesGuys(void)
