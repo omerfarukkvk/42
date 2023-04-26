@@ -1,70 +1,84 @@
 #include "Character.hpp"
 
-Character::Character(std::string const &name) : name(name)
+Character::Character(std::string const &name) :
+    name(name)
 {
-	for (int i = 0; i < 4; i++)
-		this->inventory[i] = NULL;
+    for (int i = 0; i < 4; i++) {
+        inventory[i] = nullptr;
+    }
 }
 
 Character::~Character()
 {
-	for (int i = 0; i < 4; i++)
-		if (this->inventory[i] != NULL)
-			delete this->inventory[i];
+    for (int i = 0; i < 4; i++) {
+        if (inventory[i] != nullptr) {
+            delete inventory[i];
+        }
+    }
 }
 
-Character::Character(Character const & src)
+Character::Character(Character const &oth)
 {
-    *this = src;
+    *this = oth;
 }
 
-Character &Character::operator=(Character const &oth)
+Character& Character::operator=(const Character &oth)
 {
-	this->name = oth.name;
-	for (int i = 0; i < 4; i++)
-		this->inventory[i] = oth.inventory[i];
-	return *this;
+    if (this == &oth) 
+    {
+        return *this;
+    }
+
+    name = oth.name;
+
+    for (int i = 0; i < 4; i++) 
+    {
+        if (inventory[i] != nullptr) 
+        {
+            delete inventory[i];
+            inventory[i] = nullptr;
+        }
+        if (oth.inventory[i] != nullptr) 
+        {
+            inventory[i] = oth.inventory[i]->clone();
+        }
+    }
+
+    return *this;
 }
 
-std::string const &Character::getName() const
+std::string const & Character::getName() const
 {
-	return this->name;
+    return name;
 }
 
 void Character::equip(AMateria* m)
 {
-	if (this->occupied < 4)
-	{
-		for (int i = 0; i < 4; i++)
-		{
-			if (this->inventory[i] == NULL)
-				this->inventory[this->occupied] = m;
-		}
-		this->occupied++;
-		std::cout << this->getName() + " equipped " << m->getType() << " at slot " << this->occupied << std::endl;
-	}
-	else
-		std::cout << "Inventory full" << std::endl;
+    if (m == nullptr) 
+    {
+        return;
+    }
+    for (int i = 0; i < 4; i++) {
+        if (inventory[i] == nullptr)
+        {
+            inventory[i] = m;
+            return;
+        }
+    }
 }
 
 void Character::unequip(int idx)
 {
-	if (idx < 4)
-	{
-		this->inventory[idx] = NULL;
-		this->occupied--;
-		std::cout << this->getName() + " unequipped " << this->inventory[idx]->getType() << " at slot " << idx + 1 << std::endl;
-	}
-	else
-		std::cout << "Invalid slot" << std::endl;
+    if (idx < 0 || idx >= 4 || inventory[idx] == nullptr) {
+        return;
+    }
+    inventory[idx] = nullptr;
 }
 
 void Character::use(int idx, ICharacter& target)
 {
-	if (idx >= 0 && idx < 4)
-	{
-		this->inventory[idx]->use(target);
-	}
-	else
-		std::cout << "Invalid slot" << std::endl;
+    if (idx < 0 || idx >= 4 || inventory[idx] == nullptr) {
+    return;
+    }
+    inventory[idx]->use(target);
 }

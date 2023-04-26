@@ -8,24 +8,23 @@ Cure::~Cure()
 {
 }
 
-Cure::Cure(const Cure &oth) : AMateria(oth)
+Cure::Cure(Cure const &oth) : AMateria(oth)
 {
 }
 
-Cure &Cure::operator=(const Cure &oth)
+Cure &Cure::operator=(Cure const &oth)
 {
-	if (this != &oth)
-		AMateria::operator=(oth);
-	return *this;
+    AMateria::operator=(oth);
+    return *this;
 }
 
-AMateria *Cure::clone() const
+AMateria* Cure::clone() const
 {
-	return new Cure(*this);
+    return new Cure(*this);
 }
 
-void Cure::use(ICharacter &target)
+void Cure::use(ICharacter& target)
 {
-	AMateria::use(target);
-	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+    std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }
+

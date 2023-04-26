@@ -1,18 +1,19 @@
 #include "AMateria.hpp"
 
+AMateria::AMateria()
+{
+}
+
 AMateria::AMateria(std::string const & type) : type(type)
 {
-	std::cout << "Abstract materia has beed constructed\n";
 }
 
 AMateria::~AMateria()
 {
-	std::cout << "Abstract materia has beed destroyed\n";
 }
 
-AMateria::AMateria(AMateria const &ref) : type(ref.type)
+AMateria::AMateria(AMateria const &oth) : type(oth.type)
 {
-	std::cout << "Abstract materia has beed constructed from a copy\n";
 }
 
 std::string const & AMateria::getType() const

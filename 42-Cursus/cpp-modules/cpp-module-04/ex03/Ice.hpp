@@ -1,17 +1,17 @@
 #ifndef ICE_HPP
-# define ICE_HPP
+#define ICE_HPP
 
-# include "AMateria.hpp"
+#include "ICharacter.hpp"
 
-class Ice :public AMateria
+class Ice : public AMateria
 {
-	public:
-		Ice();
-		~Ice();
-		Ice(const Ice &oth);
-		Ice &operator=(const Ice &oth);
-		AMateria *clone() const;
-		void use(ICharacter &target);
+    public:
+        Ice();
+        ~Ice();
+        Ice(Ice const &oth);
+        Ice & operator=(Ice const &oth);
+        virtual AMateria* clone() const;
+        virtual void use(ICharacter& target);
 };
 
 #endif

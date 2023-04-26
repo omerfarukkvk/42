@@ -1,27 +1,16 @@
-NAME = program
-
-SRCS = $(wildcard *.cpp)
-
-OBJS = $(SRCS:.cpp=.o)
-
+NAME = ex03
+SRC = main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
+OBJS = $(SRC:.cpp=.o)
 CXX = c++
-
-CPPFLAGS = -Wall -Werror -Wextra -std=c++98
-
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+RM = rm -rf
 all: $(NAME)
-
-$(NAME): $(OBJS)
-	$(CXX) $(CPPFLAGS) $(OBJS) -o $(NAME)
-
-%.o: %.cpp
-	$(CXX) $(CPPFLAGS) -c $< -o $@
-
+$(NAME):    $(OBJS)
+		$(CXX) $(CXXFLAGS) $(OBJS) -o $@
 clean:
-	rm -f $(OBJS)
-
-fclean: clean
-	rm -f $(NAME)
-
-re: fclean all
+		$(RM) $(OBJS)
+fclean:     clean
+		$(RM) $(NAME)
+re:     fclean $(NAME)
 
 .PHONY: all clean fclean re
