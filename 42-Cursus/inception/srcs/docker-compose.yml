@@ -1,0 +1,81 @@
+version: "3.5"
+
+networks:
+  nw:
+    name: my_network42
+    driver: bridge
+
+volumes:
+  wp:
+    driver: local
+    name: wp_volume
+    driver_opts:
+      type: none
+      o: bind
+      device: /Users/okavak/data/wp
+  db:
+    driver: local
+    name: db_volume
+    driver_opts:
+      type: none
+      o: bind
+      device: /Users/okavak/data/db
+
+services:
+ 
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    image: mariadb:okavak
+    env_file:
+      - ./.env
+    networks:
+      - nw
+    restart: always
+    volumes:
+      - db:/var/lib/mysql
+      
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    image: wordpress:okavak
+    env_file:
+      - ./.env
+    networks:
+      - nw
+    depends_on:
+      - mariadb
+    restart: always
+    volumes:
+      - wp:/var/www/html
+
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx
+    image: nginx:okavak
+    env_file:
+      - ./.env
+    ports:
+      - "443:443"
+    depends_on:
+      - mariadb
+      - wordpress
+    volumes:
+      - wp:/var/www/html
+    networks:
+      - nw
+    restart: always
+
+  static-website:
+    container_name: static-website
+    build: ./requirements/bonus/static-website
+    image: static-website:okavak
+    env_file:
+      - ./.env
+    networks:
+      - nw
+    depends_on:
+      - nginx
+    restart: always
+    ports:
+      - "8085:8085"

@@ -22,11 +22,11 @@
 
 typedef struct chr
 {
-	int		position_i;
-	int		position_j;
-	int		size;
-	int		step_cnt;
-	void	*down;
+	int			position_i;
+	int			position_j;
+	int			size;
+	unsigned	step_cnt;
+	void		*down;
 }	t_chr;
 
 typedef struct s_map
