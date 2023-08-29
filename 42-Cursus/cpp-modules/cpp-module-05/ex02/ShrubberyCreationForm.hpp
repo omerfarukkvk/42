@@ -2,6 +2,7 @@
 # define SCRUBBERYCREATIONFORM_HPP
 
 # include "AForm.hpp"
+# include <fstream>
 
 
 class ShrubberyCreationForm : public AForm
@@ -14,7 +15,7 @@ class ShrubberyCreationForm : public AForm
 		~ShrubberyCreationForm();
 		ShrubberyCreationForm(const ShrubberyCreationForm &oth);
 		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &oth);
-		void execute(Bureaucrat const &executor) const;
+		void execute(Bureaucrat const &executor);
 };
 
 #endif

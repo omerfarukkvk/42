@@ -6,7 +6,7 @@ NETWORKS	= $(shell docker network ls -q)
 all: data up
 
 clean		: down
-			@ rm -rf /Users/okavak/data
+			@ rm -rf /home/okavak/data
 			@ docker rm -f $(CONTAINERS); true;
 			@ docker rmi -f $(IMAGES); true;
 			@ docker volume rm $(VOLUMES); true;
@@ -14,7 +14,7 @@ clean		: down
 up:
 	docker compose -f ./srcs/docker-compose.yml up -d
 data:
-	mkdir -p /Users/okavak/data/db /Users/okavak/data/wp
+	mkdir -p /home/okavak/data/db /home/okavak/data/wp
 down:
 	docker compose -f ./srcs/docker-compose.yml down
 cache		: clean
