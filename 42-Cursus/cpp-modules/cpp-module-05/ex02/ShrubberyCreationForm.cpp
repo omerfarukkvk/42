@@ -1,62 +1,74 @@
-#include "ScrubberyCreationForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
-ScruberryCreationForm::ScruberryCreationForm() : Form("ScrubberyCreationForm", 145, 137), target("default") {
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137), target("default") {
 }
 
-ScrubberyCreationForm::ScrubberyCreationForm(std::string target) : Form("ScrubberyCreationForm", 145, 137), target(target) {
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137), target(target) {
 }
 
-ScrubberyCreationForm::~ScrubberyCreationForm() {
+ShrubberyCreationForm::~ShrubberyCreationForm() {
 }
 
-ScrubberyCreationForm::ScrubberyCreationForm(ScrubberyCreationForm const & src) : Form(src) {
+ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const & src) : AForm(src) {
     *this = src;
 }
 
 
-ScrubberyCreationForm & ScrubberyCreationForm::operator=(ScrubberyCreationForm const & rhs) {
+ShrubberyCreationForm & ShrubberyCreationForm::operator=(ShrubberyCreationForm const & rhs) {
     if (this != &rhs) {
-        this->_target = rhs._target;
+        this->target = rhs.target;
     }
     return *this;
 }
 
-void ScruberryCreationForm::execute(Bureaucrat const &executor) conts
+void ShrubberyCreationForm::beSigned(Bureaucrat const &bureaucrat)
 {
-    std::fstream file;
+     if (this->isSigned == true)
+        throw AForm::AlreadySignedException();
+    if (bureaucrat.getGrade() > this->gradeToSign)
+        throw AForm::GradeTooLowException();
+    else
+        this->isSigned = true;
+}
 
-    file.open(this->target + "_shrubbery", std::fstream::out | std::fstream::trunc);
-    if (!file.is_open())
-        std::err << "Error: could not open file" << std::endl;
-    
-    file << "                                                         ." << std::endl;
-    file << "                                              .         ;  " << std::endl;
-    file << "                 .              .              ;%     ;;   " << std::endl;
-    file << "                   ,           ,                :;%  %;   " << std::endl;
-    file << "                    :         ;                   :;%;'     .,   " << std::endl;
-    file << "           ,.        %;     %;            ;        %;'    ,;" << std::endl;
-    file << "             ;       ;%;  %%;        ,     %;    ;%;    ,%'" << std::endl;
-    file << "              %;       %;%;      ,  ;       %;  ;%;   ,%;' " << std::endl;
-    file << "               ;%;      %;        ;%;        % ;%;  ,%;'" << std::endl;
-    file << "                `%;.     ;%;     %;'         `;%%;.%;'" << std::endl;
-    file << "                 `:;%.    ;%%. %@;        %; ;@%;%'" << std::endl;
-    file << "                    `:%;.  :;bd%;          %;@%;'" << std::endl;
-    file << "                      `@%:.  :;%.         ;@@%;'   " << std::endl;
-    file << "                        `@%.  `;@%.      ;@@%;         " << std::endl;
-    file << "                          `@%%. `@%%    ;@@%;        " << std::endl;
-    file << "                            ;@%. :@%%  %@@%;       " << std::endl;
-    file << "                              %@bd%%%bd%%:;     " << std::endl;
-    file << "                                #@%%%%%:;;" << std::endl;
-    file << "                                %@@%%%::;" << std::endl;
-    file << "                                %@@@%(o);  . '         " << std::endl;
-    file << "                                %@@@o%;:(.,'         " << std::endl;
-    file << "                            `.. %@@@o%::;         " << std::endl;
-    file << "                               `)@@@o%::;         " << std::endl;
-    file << "                                %@@(o)::;        " << std::endl;
-    file << "                               .%@@@@%::;         " << std::endl;
-    file << "                               ;%@@@@%::;.          " << std::endl;
-    file << "                              ;%@@@@%%:;;;. " << std::endl;
-    file << "                          ...;%@@@@@%%:;;;;,.. " << std::endl;
+void ShrubberyCreationForm::execute(Bureaucrat const &executor)
+{
+    if (executor.getGrade() > this->gradeToExecute)
+		throw AForm::GradeTooLowException();
+    else
+    {
+        std::ofstream file(this->target + "_shrubbery", std::ios::trunc);
 
-    file.close();
+        file << "                                                         ." << std::endl;
+        file << "                                              .         ;  " << std::endl;
+        file << "                 .              .              ;%     ;;   " << std::endl;
+        file << "                   ,           ,                :;%  %;   " << std::endl;
+        file << "                    :         ;                   :;%;'     .,   " << std::endl;
+        file << "           ,.        %;     %;            ;        %;'    ,;" << std::endl;
+        file << "             ;       ;%;  %%;        ,     %;    ;%;    ,%'" << std::endl;
+        file << "              %;       %;%;      ,  ;       %;  ;%;   ,%;' " << std::endl;
+        file << "               ;%;      %;        ;%;        % ;%;  ,%;'" << std::endl;
+        file << "                `%;.     ;%;     %;'         `;%%;.%;'" << std::endl;
+        file << "                 `:;%.    ;%%. %@;        %; ;@%;%'" << std::endl;
+        file << "                    `:%;.  :;bd%;          %;@%;'" << std::endl;
+        file << "                      `@%:.  :;%.         ;@@%;'   " << std::endl;
+        file << "                        `@%.  `;@%.      ;@@%;         " << std::endl;
+        file << "                          `@%%. `@%%    ;@@%;        " << std::endl;
+        file << "                            ;@%. :@%%  %@@%;       " << std::endl;
+        file << "                              %@bd%%%bd%%:;     " << std::endl;
+        file << "                                #@%%%%%:;;" << std::endl;
+        file << "                                %@@%%%::;" << std::endl;
+        file << "                                %@@@%(o);  . '         " << std::endl;
+        file << "                                %@@@o%;:(.,'         " << std::endl;
+        file << "                            `.. %@@@o%::;         " << std::endl;
+        file << "                               `)@@@o%::;         " << std::endl;
+        file << "                                %@@(o)::;        " << std::endl;
+        file << "                               .%@@@@%::;         " << std::endl;
+        file << "                               ;%@@@@%::;.          " << std::endl;
+        file << "                              ;%@@@@%%:;;;. " << std::endl;
+        file << "                          ...;%@@@@@%%:;;;;,.. " << std::endl;
+
+        file.close();
+        std::cout << this->target << "_shrubbery file created" << std::endl;
+    }
 }
