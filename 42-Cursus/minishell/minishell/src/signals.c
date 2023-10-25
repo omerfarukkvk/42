@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: okavak <okavak@student.42.fr>              +#+  +:+       +#+        */
+/*   By: okavak <okavak@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 09:19:50 by okavak            #+#    #+#             */
-/*   Updated: 2023/02/01 09:19:52 by okavak           ###   ########.fr       */
+/*   Updated: 2023/09/20 23:15:02 by okavak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	event(void)
+int	 event(void)
 {
 	return (EXIT_SUCCESS);
 }

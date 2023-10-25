@@ -15,6 +15,8 @@ class ScalarConverter
         static bool checkValue(std::string const &value);
         static void printChar(std::string const &value);
         static void printInt(std::string const &value);
+        static void printFloat(std::string const &value);
+        static void printDouble(std::string const &value);
 };
 
 #endif

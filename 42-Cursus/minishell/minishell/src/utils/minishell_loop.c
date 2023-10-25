@@ -6,7 +6,7 @@
 /*   By: okavak <okavak@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 09:23:44 by okavak            #+#    #+#             */
-/*   Updated: 2023/04/17 15:10:46 by okavak           ###   ########.fr       */
+/*   Updated: 2023/09/21 02:30:50 by okavak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,7 @@ int	minishell_loop(t_tools *tools)
 {
 	char	*tmp;
 
-	tools->args = read
-	line(READLINE_MSG);
+	tools->args = readline(READLINE_MSG);
 	tmp = ft_strtrim(tools->args, " ");
 	free(tools->args);
 	tools->args = tmp;

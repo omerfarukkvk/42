@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_simple_cmds_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: okavak <okavak@student.42.fr>              +#+  +:+       +#+        */
+/*   By: okavak <okavak@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 09:23:16 by okavak            #+#    #+#             */
-/*   Updated: 2023/02/01 09:23:17 by okavak           ###   ########.fr       */
+/*   Updated: 2023/09/21 03:35:10 by okavak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,8 @@ void	ft_simple_cmdsclear(t_simple_cmds **lst)
 
 t_simple_cmds	*ft_simple_cmdsfirst(t_simple_cmds *map)
 {
-	int	i;
-
-	i = 0;
+	int	i = 0;
+	(void)i;
 	if (!map)
 		return (NULL);
 	while (map->prev != NULL)
