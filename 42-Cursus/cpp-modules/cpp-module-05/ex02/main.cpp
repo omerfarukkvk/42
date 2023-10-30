@@ -6,17 +6,17 @@
 int main()
 {
     AForm *form = new PresidentialPardonForm("Bender");
-	Bureaucrat *bureaucrat = new Bureaucrat("Melih", 1);
+	Bureaucrat *bureaucrat = new Bureaucrat("Omer", 1);
 	bureaucrat->signForm(*form);
 	bureaucrat->executeForm(*form);
-	Bureaucrat *bureaucrat2 = new Bureaucrat("Piltan", 140);
-	AForm *form2 = new RobotomyRequestForm("Miskirik");
+	Bureaucrat *bureaucrat2 = new Bureaucrat("Kavak", 140);
+	AForm *form2 = new RobotomyRequestForm("Robot");
 	bureaucrat2->signForm(*form2);
 	bureaucrat->signForm(*form2);
 	bureaucrat2->executeForm(*form2);
 	bureaucrat->executeForm(*form2);
 	bureaucrat->signForm(*form2);
-	Bureaucrat *bureaucrat3 = new Bureaucrat("Cooler Piltan", 2);
+	Bureaucrat *bureaucrat3 = new Bureaucrat("Faruk", 2);
 	AForm *form3 = new ShrubberyCreationForm("Form");
 	bureaucrat3->signForm(*form3);
 	bureaucrat3->executeForm(*form3);

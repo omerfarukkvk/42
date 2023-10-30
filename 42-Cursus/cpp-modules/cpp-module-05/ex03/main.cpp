@@ -9,7 +9,7 @@ int main()
     Intern someRandomIntern;
 	AForm *form;
 	Bureaucrat *bureaucrat;
-	bureaucrat = new Bureaucrat("Melih", 1);
+	bureaucrat = new Bureaucrat("Omer", 1);
 	form = someRandomIntern.makeForm("shrubbery creation", "Bender");
 	bureaucrat->signForm(*form);
 	bureaucrat->executeForm(*form);

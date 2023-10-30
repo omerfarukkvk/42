@@ -23,6 +23,21 @@ Intern &Intern::operator=(const Intern &oth)
     return *this;
 }
 
+static AForm *makeRobotomy(const std::string target)
+{
+    return new RobotomyRequestForm(target);
+}
+
+static AForm *makePresidential(const std::string target)
+{
+    return new PresidentialPardonForm(target);
+}
+
+static AForm *makeShrubbery(const std::string target)
+{
+    return new ShrubberyCreationForm(target);
+}
+
 AForm *Intern::makeForm(const std::string &name, const std::string &target)
 {
     std::string forNames[3] = {
@@ -30,17 +45,12 @@ AForm *Intern::makeForm(const std::string &name, const std::string &target)
         "presidential pardon",
         "shrubbery creation"
     };
-
-    AForm *form[3] = {
-        new RobotomyRequestForm(target),
-        new PresidentialPardonForm(target),
-        new ShrubberyCreationForm(target)
-    };
+    AForm *(*all_forms[])(const std::string target) = {&makeRobotomy, &makePresidential, &makeShrubbery};
     
     for (int i = 0; i < 3; i++)
     {
         if (name == forNames[i])
-            return form[i];
+            return (all_forms[i](target));
     }
     std::cout << "Intern cannot create " << name << " form" << std::endl;
     return 0;
