@@ -25,7 +25,7 @@ class Bureaucrat
 			public:
 				virtual const char *what() const throw();
 		};
-		const std::string &getName() const;
+		const std::string getName() const;
 		int getGrade() const;
 		void incrementGrade();
 		void decrementGrade();

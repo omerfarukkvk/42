@@ -45,6 +45,11 @@ const char* AForm::AlreadySignedException::what() const throw()
     return "Form is already signed";
 }
 
+const char* AForm::CannotSignedException::what() const throw()
+{
+    return "Form is cannot signed";
+}
+
 std::string AForm::getName() const
 {
 	return this->name;

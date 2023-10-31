@@ -43,7 +43,7 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 	return "Grade too low";
 }
 
-const std::string &Bureaucrat::getName() const
+const std::string Bureaucrat::getName() const
 {
 	return this->name;
 }

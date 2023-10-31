@@ -40,6 +40,8 @@ void RobotomyRequestForm::execute(const Bureaucrat &executor)
 {
     if (executor.getGrade() > this->gradeToExecute)
         throw AForm::GradeTooLowException();
+    else if(this->getIsSigned() == false)
+        throw AForm::CannotSignedException();
     else
     {
         srand(time(NULL));

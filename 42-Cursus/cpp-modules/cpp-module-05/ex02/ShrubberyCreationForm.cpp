@@ -35,6 +35,8 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor)
 {
     if (executor.getGrade() > this->gradeToExecute)
 		throw AForm::GradeTooLowException();
+    else if(this->getIsSigned() == false)
+        throw AForm::CannotSignedException();
     else
     {
         std::ofstream file(this->target + "_shrubbery", std::ios::trunc);

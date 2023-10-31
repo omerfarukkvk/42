@@ -1,8 +1,10 @@
 #include "Bureaucrat.hpp"
-//#include <typeinfo>
 
 int main(void)
 {
+    Bureaucrat b1;
+
+    std::cout << b1.getName() << std::endl;
 	try{
 		Bureaucrat b1("b1", 160);
 	}
@@ -16,7 +18,6 @@ int main(void)
 	}
 	catch (std::exception &e)
 	{
-		//std::cout << typeid(e).name() << std::endl;
 		std::cout << e.what() << std::endl;
 	}
 	Bureaucrat b3("b3", 150);
