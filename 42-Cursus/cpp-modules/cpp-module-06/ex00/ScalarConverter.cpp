@@ -1,9 +1,4 @@
 #include "ScalarConverter.hpp"
-#include <_ctype.h>
-#include <cctype>
-#include <iostream>
-#include <ostream>
-#include <string>
 
 ScalarConverter::ScalarConverter()
 {
@@ -103,7 +98,12 @@ void ScalarConverter::printFloat(const std::string &value)
 {
     float n;
 
-    if (checkValue(value))
+    if (value == "+inff" || value == "-inff" || value == "nanf")
+    {
+        std::cout << "float: " << value << std::endl;
+        return;
+    }
+    else if (checkValue(value))
         std::cout << "float: " << value << "f" << std::endl;
     else
     {
@@ -151,6 +151,5 @@ void ScalarConverter::printDouble(const std::string &value)
         else
             std::cout << "double: " << n << std::endl;
     }
-
 }
 

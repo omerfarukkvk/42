@@ -14,6 +14,10 @@ int main(void)
     std::cout << "---------------------------------------------------" << std::endl;
 
     uintptr_t val = Serializer::serialize(&before);
+    std::cout << "val: " << val << std::endl;
+
+    std::cout << "---------------------------------------------------" << std::endl;
+
     after = Serializer::deserialize(val);
     std::cout << "after address: " << after << std::endl;
     std::cout << "after text: " << after->str << std::endl;

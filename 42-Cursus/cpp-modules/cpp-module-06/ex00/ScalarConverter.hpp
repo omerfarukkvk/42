@@ -2,12 +2,13 @@
 # define SCALARCONVERTER_HPP
 
 # include <iostream>
-#include <string>
+# include <string>
 
 class ScalarConverter
 {
-    public:
+    private:
         ScalarConverter();
+    public:
         ~ScalarConverter();
         ScalarConverter(const ScalarConverter &oth);
         ScalarConverter &operator=(const ScalarConverter &oth);

@@ -2,7 +2,6 @@
 # define SERIALIZER_HPP
 
 #include <iostream>
-#include <stdint.h>
 
 struct Data
 {
@@ -12,8 +11,9 @@ struct Data
 
 class Serializer
 {
-    public:
+    private:
         Serializer();
+    public:
         ~Serializer();
         Serializer(const Serializer &oth);
         Serializer &operator=(const Serializer &oth);
