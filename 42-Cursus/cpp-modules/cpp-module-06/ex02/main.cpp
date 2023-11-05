@@ -37,26 +37,23 @@ void identify(Base& p)
     }
     catch (std::exception& e)
     {
-       
         try
         {
             (void)dynamic_cast<B&>(p);
-        std::cout << "B" << std::endl;
+            std::cout << "B" << std::endl;
         }
         catch(const std::exception& e)
         {
             try
             {
                 (void)dynamic_cast<C&>(p);
-            std::cout << "C" << std::endl;
+                std::cout << "C" << std::endl;
             }
             catch(const std::exception& e)
             {
                 std::cerr << e.what() << '\n';
-            }
-            
+            }   
         }
-        
     }
 }
 
