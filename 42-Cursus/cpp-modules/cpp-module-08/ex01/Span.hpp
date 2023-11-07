@@ -15,7 +15,9 @@ class Span{
         Span(const Span &oth);
         Span &operator=(const Span &oth);
         void addNumber(int n);
-    
+        int shortestSpan();
+        int longestSpan();
+        void addNumbers(std::vector<int>::iterator start, std::vector<int>::iterator end);
 };
 
 #endif
