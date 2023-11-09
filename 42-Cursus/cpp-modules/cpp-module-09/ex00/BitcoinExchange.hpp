@@ -10,7 +10,7 @@ class BitcoinExchange
 {
 	private:
 		std::map<std::string, float> data;
-		bool readFlag;
+		int readFlag;
 	public:
 		BitcoinExchange();
 		~BitcoinExchange();

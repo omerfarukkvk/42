@@ -3,11 +3,11 @@
 BitcoinExchange::BitcoinExchange()
 {
 	int i = 0;
-	this->readFlag = true;
+	this->readFlag = 1;
 	std::ifstream file("./data.csv");
 	if (!file.is_open())
 	{
-		this->readFlag = false;
+		this->readFlag = 0;
 		return;
 	}
 	std::string line;
