@@ -2,6 +2,7 @@
 # define BITCOINEXCHANGE_HPP
 
 # include <map>
+# include <vector>
 # include <iostream>
 # include <fstream>
 
@@ -10,16 +11,16 @@ class BitcoinExchange
 {
 	private:
 		std::map<std::string, float> data;
-		int readFlag;
 	public:
 		BitcoinExchange();
 		~BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange &oth);
 		BitcoinExchange &operator=(const BitcoinExchange &oth);
-		void setData(std::string date, float value);
-		void readInput(std::string inputPath);
-		std::map<std::string, float> getData();
-		std::vector<std::string> splitString(std::string str, char delimiter);
+		void addPrivate(std::string);
+		void compare(std::string);
+		bool checkInput(std::string line);
+		bool checkDate(std::string);
+		void compareDate(std::string);
 };
 
 #endif
