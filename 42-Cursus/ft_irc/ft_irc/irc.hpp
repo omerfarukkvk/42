@@ -4,4 +4,9 @@
 # include <iostream>
 using namespace std;
 
+
+void checkPortArg(string arg);
+void checkPassArg(string arg);
+
+
 #endif
