@@ -1,32 +1,46 @@
 #include "../includes/irc.hpp"
 
-IRC::IRC(int argc, char **argv)
+IRC::IRC(char **av) : port(std::stoi(av[1])), password(av[2])
 {
-	if (argc != 3)
+	this->sockfd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+	error(this->sockfd, "socket");
+	sockaddr_in addr;
+	addr.sin_family = AF_INET;
+	addr.sin_port = htons(this->port);
+	addr.sin_addr.s_addr = INADDR_ANY;
+	error(bind(this->sockfd, reinterpret_cast<sockaddr*>(&addr), sizeof(addr)), "bind");
+	error(listen(this->sockfd, 10), "listen");
+	std::cout << "Server is listening on port " << this->port << std::endl;
+}
+
+void IRC::checkArgs(int ac,char **av)
+{
+	if (ac != 3)
 	{
 		std::cout << "Usage: ./irc [host] [port]" << std::endl;
 		exit(1);
 	}
-	checkArgs(argc, argv);
-}
-
-void IRC::checkArgs(int argc, char **argv)
-{
-	(void)argc;
 	try
 	{
-		port = std::stoi(argv[1]);
-		password = argv[2];
+		int port = std::stoi(av[1]);
 		if (port < 1024 || port > 65535)
-			throw std::invalid_argument("Invalid port");
+		{
+			std::cout << "Port must be between 1024 and 65535" << std::endl;
+			exit(1);
+		}
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << "Port must be a number" << std::endl;
 		exit(1);
 	}
-	//---------------------SIL---------------------
-	std::cout << "Password: " << password << std::endl;
-	std::cout << "Port: " << port << std::endl;
-	//---------------------------------------------
+}
+
+void IRC::error(int value, std::string func)
+{
+	if (value == -1)
+	{
+		std::cout << "Error in " << func << std::endl;
+		exit(1);
+	}
 }

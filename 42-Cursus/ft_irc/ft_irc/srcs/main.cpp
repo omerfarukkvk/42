@@ -2,7 +2,8 @@
 
 int main(int ac, char *av[])
 {
-    IRC irc(ac, av);
+    IRC::checkArgs(ac, av);
+    IRC irc(av);
    
     return 0;
 }
