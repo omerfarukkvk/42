@@ -10,7 +10,9 @@ IRC::IRC(char **av) : port(std::stoi(av[1])), password(av[2])
 	addr.sin_addr.s_addr = INADDR_ANY;
 	error(bind(this->sockfd, reinterpret_cast<sockaddr*>(&addr), sizeof(addr)), "bind");
 	error(listen(this->sockfd, 10), "listen");
-	std::cout << "Server is listening on port " << this->port << std::endl;
+	error(setsockopt(this->sockfd, SOL_SOCKET, SO_REUSEADDR, &this->port, sizeof(this->port)), "setsockopt");
+	error(fcntl(this->sockfd, F_SETFL, O_NONBLOCK), "fcntl");
+	std::cout << "Server is running on port " << this->port << std::endl;
 }
 
 void IRC::checkArgs(int ac,char **av)
@@ -42,5 +44,13 @@ void IRC::error(int value, std::string func)
 	{
 		std::cout << "Error in " << func << std::endl;
 		exit(1);
+	}
+}
+
+void IRC::run()
+{
+	while(true)
+	{
+		
 	}
 }

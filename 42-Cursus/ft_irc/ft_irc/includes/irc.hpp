@@ -4,6 +4,7 @@
 # include <iostream>
 # include <sys/socket.h>
 # include <netinet/in.h>
+# include <fcntl.h>
 
 class IRC
 {
@@ -15,6 +16,7 @@ class IRC
 		IRC(char **av);
 		void error(int value, std::string func);
 		static void checkArgs(int ac, char **av);
+		void run();
 
 };
 
