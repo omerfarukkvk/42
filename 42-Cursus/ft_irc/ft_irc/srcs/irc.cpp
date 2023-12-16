@@ -4,14 +4,13 @@ IRC::IRC(char **av) : port(std::stoi(av[1])), password(av[2])
 {
 	this->sockfd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	error(this->sockfd, "socket");
+	error(setsockopt(this->sockfd, SOL_SOCKET, SO_REUSEADDR, &this->port, sizeof(this->port)), "setsockopt");
 	sockaddr_in addr;
 	addr.sin_family = AF_INET;
 	addr.sin_port = htons(this->port);
 	addr.sin_addr.s_addr = INADDR_ANY;
 	error(bind(this->sockfd, reinterpret_cast<sockaddr*>(&addr), sizeof(addr)), "bind");
-	error(listen(this->sockfd, 10), "listen");
-	error(setsockopt(this->sockfd, SOL_SOCKET, SO_REUSEADDR, &this->port, sizeof(this->port)), "setsockopt");
-	error(fcntl(this->sockfd, F_SETFL, O_NONBLOCK), "fcntl");
+	//error(fcntl(this->sockfd, F_SETFL, O_NONBLOCK), "fcntl");
 	std::cout << "Server is running on port " << this->port << std::endl;
 }
 
@@ -51,6 +50,14 @@ void IRC::run()
 {
 	while(true)
 	{
+		char buffer[1024];
+		error(listen(this->sockfd, 10), "listen");
+		sockaddr_in client;
+		int newFd = accept(this->sockfd, reinterpret_cast<sockaddr*>(&client), reinterpret_cast<socklen_t*>(&client));
+		error(newFd, "accept");
+		error(recv(newFd, buffer, 1024, MSG_EOF), "recv");
+		std::string msg = ":localhost 001 test :Welcome to the Internet Relay Network!test!test@localhost\r\n";
+		error(send(newFd, msg.c_str(), sizeof(msg), 0), "send");
 		
 	}
 }
